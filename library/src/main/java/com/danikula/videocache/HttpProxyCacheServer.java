@@ -195,6 +195,16 @@ public class HttpProxyCacheServer {
         return new File(cacheDir, fileName);
     }
 
+    public File getTempCacheFile(String url) {
+        File cacheDir = config.cacheRoot;
+        String fileName = config.fileNameGenerator.generate(url) + ".download";
+        return new File(cacheDir, fileName);
+    }
+
+    public File getCacheRoot() {
+        return config.cacheRoot;
+    }
+
     private void touchFileSafely(File cacheFile) {
         try {
             config.diskUsage.touch(cacheFile);
